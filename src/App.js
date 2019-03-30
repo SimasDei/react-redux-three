@@ -19,7 +19,26 @@ const movies = [
   }
 ];
 
+const API = {
+  url: 'https://api.themoviedb.org/3/',
+  key: 'ab1108ff64d84d869773eb7692b0749f'
+};
+
 class App extends Component {
+  async componentDidMount() {
+    try {
+      const result = await fetch(
+        `${API.url}discover/movie?api_key=${
+          API.key
+        }&language=en-US&sort_by=popularity.desc&page=1`
+      );
+      const movies = await result.json();
+      console.log(movies);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   render() {
     return (
       <div className="App">
