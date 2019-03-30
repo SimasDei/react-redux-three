@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 
@@ -31,16 +32,21 @@ class App extends Component {
   render() {
     const { movies } = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img className="App-logo" src={logo} alt="logo" />
-        </header>
-        {movies.map(movie => (
-          <Movie key={movie.id} movie={movie} />
-        ))}
-      </div>
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <img className="App-logo" src={logo} alt="logo" />
+          </header>
+          <Route path={'/test'} component={Test} />
+          {movies.map(movie => (
+            <Movie key={movie.id} movie={movie} />
+          ))}
+        </div>
+      </Router>
     );
   }
 }
+
+const Test = () => <h1>test</h1>;
 
 export default App;
