@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Overdrive from 'react-overdrive';
 import { Poster } from './Movie';
 
 const API = {
@@ -34,10 +35,12 @@ export class MovieDetails extends Component {
     return (
       <MovieWrapper backdrop={`${backdrop_path}${movie.backdrop_path}`}>
         <MovieInfo>
-          <Poster
-            src={`${poster_path}${movie.poster_path}`}
-            alt={movie.title}
-          />
+          <Overdrive id={movie.id}>
+            <Poster
+              src={`${poster_path}${movie.poster_path}`}
+              alt={movie.title}
+            />
+          </Overdrive>
           <div>
             <h2>{movie.title}</h2>
             <h3>{movie.release_date}</h3>
