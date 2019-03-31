@@ -4,6 +4,7 @@ import './App.css';
 
 import Header from './Components/Header';
 import MoviesList from './Components/MoviesList';
+import MovieDetails from './Components/MovieDetails';
 
 class App extends Component {
   render() {
@@ -13,14 +14,12 @@ class App extends Component {
           <Header />
           <Switch>
             <Route path="/" exact component={MoviesList} />
-            <Route path={'/test'} component={Test} />
+            <Route path={'/:id'} component={MovieDetails} />
           </Switch>
         </div>
       </Router>
     );
   }
 }
-
-const Test = () => <h1>test</h1>;
 
 export default App;
