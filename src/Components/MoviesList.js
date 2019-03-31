@@ -17,7 +17,7 @@ export class MoviesList extends Component {
       const result = await fetch(
         `${API.url}discover/movie?api_key=${
           API.key
-        }&language=en-US&sort_by=popularity.desc&page=1`
+        }&language=en-US&sort_by=popularity.desc&page=2`
       );
       const movies = await result.json();
       this.setState({ movies: movies.results });
