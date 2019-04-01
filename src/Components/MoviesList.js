@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import Movie from './Movie';
 
@@ -7,7 +7,7 @@ const API = {
   key: 'ab1108ff64d84d869773eb7692b0749f'
 };
 
-export class MoviesList extends Component {
+export class MoviesList extends PureComponent {
   state = {
     movies: []
   };
