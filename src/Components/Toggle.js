@@ -1,18 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { toggleMessage } from '../actions';
 
-const Toggle = ({ messageVisibility, dispatch }) => (
+const Toggle = ({ messageVisibility, toggleMessage }) => (
   <div>
     {messageVisibility && <p>Component has Been Toggled !</p>}
-    <button
-      onClick={() =>
-        dispatch({
-          type: 'TOGGLE_MESSAGE'
-        })
-      }
-    >
-      Toggle
-    </button>
+    <button onClick={toggleMessage}>Toggle</button>
   </div>
 );
 
@@ -20,4 +14,15 @@ const mapStateToProps = state => ({
   messageVisibility: state.message.messageVisibility
 });
 
-export default connect(mapStateToProps)(Toggle);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      toggleMessage
+    },
+    dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Toggle);
