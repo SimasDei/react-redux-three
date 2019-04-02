@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { toggleMessage } from '../actions';
+import { toggleMessage, getMovies } from '../actions';
 
-const Toggle = ({ messageVisibility, toggleMessage }) => (
+const Toggle = ({ messageVisibility, toggleMessage, getMovies }) => (
   <div>
     {messageVisibility && <p>Component has Been Toggled !</p>}
     <button onClick={toggleMessage}>Toggle</button>
+    <button onClick={getMovies}>Load Movies</button>
   </div>
 );
 
@@ -17,7 +18,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      toggleMessage
+      toggleMessage,
+      getMovies
     },
     dispatch
   );
