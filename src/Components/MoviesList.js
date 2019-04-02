@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Movie from './Movie';
+import { getMovies } from '../actions';
 
 const API = {
   url: 'https://api.themoviedb.org/3/',
@@ -13,21 +16,12 @@ export class MoviesList extends PureComponent {
   };
 
   async componentDidMount() {
-    try {
-      const result = await fetch(
-        `${API.url}discover/movie?api_key=${
-          API.key
-        }&language=en-US&sort_by=popularity.desc&page=2`
-      );
-      const movies = await result.json();
-      this.setState({ movies: movies.results });
-    } catch (error) {
-      console.error(error);
-    }
+    const { getMovies } = this.props;
+    getMovies();
   }
 
   render() {
-    const { movies } = this.state;
+    const { movies } = this.props;
     return (
       <MovieGrid>
         {movies.map(movie => (
@@ -38,7 +32,22 @@ export class MoviesList extends PureComponent {
   }
 }
 
-export default MoviesList;
+const mapStateToProps = state => ({
+  movies: state.message.movies
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      getMovies
+    },
+    dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MoviesList);
 
 const MovieGrid = styled.div`
   display: grid;
